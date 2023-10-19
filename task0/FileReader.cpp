@@ -4,14 +4,10 @@
 
 #include "FileReader.h"
 #include <iostream>
-#include <fstream>
 #include <utility>
 
-using namespace std;
-using std::ifstream;
-
-FileReader::FileReader(std::string fname) {
-    filename = std::move(fname);
+FileReader::FileReader(string filename) {
+    filename = std::move(filename);
 }
 
 void FileReader::open() {

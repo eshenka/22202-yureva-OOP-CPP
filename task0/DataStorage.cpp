@@ -4,12 +4,11 @@
 
 #include "DataStorage.h"
 
-
 DataStorage::DataStorage() {
     length = 0;
 };
 
-void DataStorage::push_back(const std::string& str) {
+void DataStorage::pushBack(const std::string& str) {
     ++data[str];
     ++length;
 }

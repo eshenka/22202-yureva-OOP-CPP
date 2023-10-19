@@ -5,16 +5,16 @@
 #ifndef TASK0_CSVFILEWRITER_H
 #define TASK0_CSVFILEWRITER_H
 
-#include "string"
-#include "iostream"
+#include <iostream>
 #include <fstream>
-#include "vector"
+#include <string>
+#include <vector>
 #include <tuple>
 
-using std::string;
-using std::pair;
-using std::vector;
 using std::ofstream;
+using std::string;
+using std::vector;
+using std::pair;
 using std::tuple;
 
 class CSVFileWriter {

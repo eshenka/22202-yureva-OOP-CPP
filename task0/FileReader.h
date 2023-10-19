@@ -5,22 +5,20 @@
 #ifndef TASK0_FILEREADER_H
 #define TASK0_FILEREADER_H
 
-#include "string"
-#include "iostream"
-#include "fstream"
+#include <string>
+#include <iostream>
+#include <fstream>
 
 using std::string;
 using std::ifstream;
-
 
 class FileReader {
 private:
     string filename;
     ifstream file;
 public:
-    FileReader(string fname);
+    explicit FileReader(string filename);
     void open();
-    //bool isOpen();
     string next();
     bool hasNext();
     void close();

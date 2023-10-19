@@ -4,10 +4,12 @@
 #include "DataStorage.h"
 #include "CSVFileWriter.h"
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 using std::string;
-using std::get;
 using std::map;
+using std::get;
 
 int main() {
 
@@ -28,7 +30,7 @@ int main() {
         myText = textToHandle.next();
         vector<string> v = vectorResult.parse(myText);
         for (auto i = 0; i < v.size(); i++) {
-            mapData.push_back(v[i]);
+            mapData.pushBack(v[i]);
         }
     }
     textToHandle.close();
