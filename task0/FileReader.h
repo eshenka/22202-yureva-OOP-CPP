@@ -19,6 +19,7 @@ private:
 public:
     explicit FileReader(string filename);
     void open();
+    bool isOpen();
     string next();
     bool hasNext();
     void close();

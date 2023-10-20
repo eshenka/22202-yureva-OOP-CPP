@@ -14,6 +14,10 @@ void FileReader::open() {
     file.open(filename);
 }
 
+bool FileReader::isOpen() {
+    return file.is_open();
+}
+
 string FileReader::next() {
     string text;
     std::getline((file), text);
