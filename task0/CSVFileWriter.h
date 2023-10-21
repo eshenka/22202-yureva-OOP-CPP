@@ -22,7 +22,7 @@ private:
     string filename;
     ofstream file;
 public:
-    explicit CSVFileWriter(string fname);
+    explicit CSVFileWriter(string filename);
     void open();
     void write(tuple<string, int, double> data);
     void next();

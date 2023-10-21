@@ -7,7 +7,7 @@
 #include <utility>
 
 FileReader::FileReader(string filename) {
-    filename = std::move(filename);
+    this->filename = std::move(filename);
 }
 
 void FileReader::open() {

@@ -5,17 +5,18 @@
 #include "CSVFileWriter.h"
 #include <iostream>
 #include <utility>
+
 using std::get;
 
-CSVFileWriter::CSVFileWriter(std::string fname) {
-    filename = std::move(fname);
+CSVFileWriter::CSVFileWriter(string filename) {
+    this->filename = std::move(filename);
 }
 
 void CSVFileWriter::open() {
     file.open(filename);
 }
 
-void CSVFileWriter::write(tuple <string, int, double> data) {
+void CSVFileWriter::write(tuple<string, int, double> data) {
     file << get<0>(data) << "; " << get<1>(data) << "; " << get<2>(data);
 }
 
