@@ -4,7 +4,7 @@
 
 #include "Parser.h"
 
-vector<string> Parser::parse(const string &str) {
+vector<string> Parser::parse(string str) {
     vector<string> result;
 
     string word;

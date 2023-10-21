@@ -53,7 +53,7 @@ int main() {
     csvFile.open();
 
     for (auto& it : result) {
-        tuple <string, int, double> toWrite;
+        tuple<string, int, double> toWrite;
         get<0>(toWrite) = it.first;
         get<1>(toWrite) = it.second;
         get<2>(toWrite) = (double) it.second / length * 100;

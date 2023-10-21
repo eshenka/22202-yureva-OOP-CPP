@@ -13,7 +13,7 @@ using std::vector;
 class Parser {
 public:
     Parser() = default;
-    vector<string> parse(const string& str);
+    static vector<string> parse(string str);
 };
 
 #endif //TASK0_PARSER_H
