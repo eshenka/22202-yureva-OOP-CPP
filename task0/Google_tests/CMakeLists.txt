@@ -9,6 +9,9 @@ add_executable(Google_tests_run
         ../Parser.cpp
         FileReader_test.cpp
         ../FileReader.h
-        ../FileReader.cpp)
+        ../FileReader.cpp
+        DataStorage_test.cpp
+        ../DataStorage.h
+        ../DataStorage.cpp)
 
 target_link_libraries(Google_tests_run gtest gtest_main)
