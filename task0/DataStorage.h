@@ -1,7 +1,3 @@
-//
-// Created by Yulia on 13.10.2023.
-//
-
 #ifndef TASK0_DATASTORAGE_H
 #define TASK0_DATASTORAGE_H
 #include <string>
@@ -15,7 +11,6 @@ using std::vector;
 using std::pair;
 using std::map;
 using std::tuple;
-
 
 class DataStorage {
 private:

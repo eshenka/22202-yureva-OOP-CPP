@@ -1,7 +1,3 @@
-//
-// Created by Yulia on 19.09.2023.
-//
-
 #include "CSVFileWriter.h"
 #include <iostream>
 #include <utility>

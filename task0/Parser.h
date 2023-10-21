@@ -1,7 +1,3 @@
-//
-// Created by Yulia on 23.09.2023.
-//
-
 #ifndef TASK0_PARSER_H
 #define TASK0_PARSER_H
 #include <string>

@@ -1,7 +1,3 @@
-//
-// Created by Yulia on 19.09.2023.
-//
-
 #ifndef TASK0_FILEREADER_H
 #define TASK0_FILEREADER_H
 

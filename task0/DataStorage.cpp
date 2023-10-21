@@ -1,7 +1,3 @@
-//
-// Created by Yulia on 13.10.2023.
-//
-
 #include "DataStorage.h"
 
 DataStorage::DataStorage() {
@@ -13,11 +9,11 @@ void DataStorage::pushBack(const std::string& str) {
     ++length;
 }
 
-std::map<std::string, int>::iterator DataStorage::begin() {
+map<string, int>::iterator DataStorage::begin() {
     return data.begin();
 }
 
-std::map<std::string, int>::iterator DataStorage::end() {
+map<string, int>::iterator DataStorage::end() {
     return data.end();
 }
 

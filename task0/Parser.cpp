@@ -1,7 +1,3 @@
-//
-// Created by Yulia on 23.09.2023.
-//
-
 #include "Parser.h"
 
 vector<string> Parser::parse(string str) {
