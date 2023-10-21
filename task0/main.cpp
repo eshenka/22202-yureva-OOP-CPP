@@ -22,10 +22,10 @@ int main() {
     FileReader textToHandle(filename);
     textToHandle.open();
 
-    if (!textToHandle.isOpen()) {
+    /*if (!textToHandle.isOpen()) {
         cout << "Failed to open file";
         return 0;
-    }
+    }*/
 
     string myText;
     Parser vectorResult;
