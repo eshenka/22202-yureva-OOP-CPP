@@ -3,6 +3,7 @@
 #include <fstream>
 
 using std::ifstream;
+using std::getline;
 
 TEST (CSVFileWriterTest, OutputTest) {
 
@@ -23,12 +24,14 @@ TEST (CSVFileWriterTest, OutputTest) {
     file.open(filename);
 
     string line;
-    std::getline(file, line);
+    getline(file, line);
     ASSERT_EQ(line, "hello; 2; 0.7");
-    std::getline(file, line);
+    getline(file, line);
     ASSERT_EQ(line, "me; 1; 0.3");
-    std::getline(file, line);
+    getline(file, line);
     ASSERT_EQ(line, "");
     ASSERT_EQ(file.eof(), 1);
+
+    file.close();
 
 }

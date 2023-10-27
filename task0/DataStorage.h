@@ -14,7 +14,7 @@ using std::tuple;
 
 class DataStorage {
 private:
-    map<std::string, int> data;
+    map<string, int> data;
     int length;
 public:
     DataStorage();
