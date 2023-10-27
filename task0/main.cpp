@@ -29,13 +29,13 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    string myText;
-    Parser vectorResult;
+    string line;
+    Parser parser;
     DataStorage mapData;
 
     while(textToHandle.hasNext()) {
-        myText = textToHandle.next();
-        vector<string> v = vectorResult.parse(myText);
+        line = textToHandle.next();
+        vector<string> v = parser.parse(line);
         for (auto i = 0; i < v.size(); i++) {
             mapData.pushBack(v[i]);
         }

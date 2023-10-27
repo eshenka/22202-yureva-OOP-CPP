@@ -7,7 +7,7 @@ using std::getline;
 
 TEST (CSVFileWriterTest, OutputTest) {
 
-    string filename = "C:\\Users\\Yulia\\uni2\\sem3\\OOP\\22202-yureva-OOP-CPP\\task0\\Google_tests\\test.txt";
+    string filename = "test.txt";
     CSVFileWriter csvFile(filename);
     csvFile.open();
 

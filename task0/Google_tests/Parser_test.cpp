@@ -29,7 +29,6 @@ TEST(ParserTest, divisionTest2) {
 
 }
 
-
 TEST(ParserTest, toLowerCaseTest) {
 
     string strToTest = "HeLlO iT iS Me";

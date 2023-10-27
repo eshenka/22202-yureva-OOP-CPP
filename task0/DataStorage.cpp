@@ -9,14 +9,6 @@ void DataStorage::pushBack(const std::string& str) {
     ++length;
 }
 
-map<string, int>::iterator DataStorage::begin() {
-    return data.begin();
-}
-
-map<string, int>::iterator DataStorage::end() {
-    return data.end();
-}
-
 bool cmp(const pair<string, int>& a, const pair<string, int>& b) {
     return a.second > b.second;
 }

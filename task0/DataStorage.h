@@ -19,8 +19,6 @@ private:
 public:
     DataStorage();
     void pushBack(const string& str);
-    map<string, int>::iterator begin();
-    map<string, int>::iterator end();
     vector<pair<string, int>> sort();
     int getLength();
 };
