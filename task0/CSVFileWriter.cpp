@@ -3,6 +3,7 @@
 #include <utility>
 
 using std::get;
+using std::endl;
 
 CSVFileWriter::CSVFileWriter(string filename) {
     this->filename = std::move(filename);
@@ -13,11 +14,7 @@ void CSVFileWriter::open() {
 }
 
 void CSVFileWriter::write(tuple<string, int, double> data) {
-    file << get<0>(data) << "; " << get<1>(data) << "; " << get<2>(data);
-}
-
-void CSVFileWriter::next() {
-    file << '\n';
+    file << get<0>(data) << "; " << get<1>(data) << "; " << get<2>(data) << endl;
 }
 
 void CSVFileWriter::close() {

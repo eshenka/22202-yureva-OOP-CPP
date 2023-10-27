@@ -58,7 +58,6 @@ int main() {
         get<1>(toWrite) = it.second;
         get<2>(toWrite) = (double) it.second / length * 100;
         csvFile.write(toWrite);
-        csvFile.next();
     }
     csvFile.close();
 

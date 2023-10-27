@@ -12,6 +12,9 @@ add_executable(Google_tests_run
         ../FileReader.cpp
         DataStorage_test.cpp
         ../DataStorage.h
-        ../DataStorage.cpp)
+        ../DataStorage.cpp
+        CSVFileWriter_test.cpp
+        ../CSVFileWriter.h
+        ../CSVFileWriter.cpp)
 
 target_link_libraries(Google_tests_run gtest gtest_main)

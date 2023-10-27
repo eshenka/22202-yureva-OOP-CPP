@@ -21,7 +21,6 @@ public:
     explicit CSVFileWriter(string filename);
     void open();
     void write(tuple<string, int, double> data);
-    void next();
     void close();
 };
 
