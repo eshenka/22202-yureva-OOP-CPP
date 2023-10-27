@@ -12,13 +12,14 @@ using std::string;
 using std::map;
 using std::get;
 
-int main() {
+int main(int argc, char* argv[]) {
 
-    string filename;
+    if (argc < 3) {
+        return 0;
+    }
+
+    string filename = argv[1];
     ifstream file;
-    cout << "File to handle:";
-    cin >> filename;
-    cout << endl;
 
     FileReader textToHandle(filename);
     textToHandle.open();
@@ -45,10 +46,7 @@ int main() {
     result = mapData.sort();
     int length = mapData.getLength();
 
-    cout << "File to store data:";
-    cin >> filename;
-    cout << endl;
-
+    filename = argv[2];
     CSVFileWriter csvFile(filename);
     csvFile.open();
 
