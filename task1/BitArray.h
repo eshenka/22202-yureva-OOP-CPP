@@ -1,15 +1,26 @@
 #ifndef TASK1_BITARRAY_H
 #define TASK1_BITARRAY_H
 
+#include <iostream>
+#include <math.h>
 #include <string>
+#include <vector>
+
+#define BITS_IN_UNSIGNED_LONG 32
+#define VALUE_TRUE pow(2, 32) - 1
+#define VALUE_FALSE 0
 
 using std::string;
+using std::vector;
 
 class BitArray {
+private:
+    vector<unsigned long> data;
+    int length;
 public:
 
-    BitArray();
-    ~BitArray();
+    BitArray() = default;
+    ~BitArray() = default;
 
     //Конструирует массив, хранящий заданное количество бит.
     //Первые sizeof(long) бит можно инициализровать с помощью параметра value.
@@ -65,7 +76,6 @@ public:
     BitArray operator~() const;
     //Подсчитывает количество единичных бит.
     int count() const;
-
 
     //Возвращает значение бита по индексу i.
     bool operator[](int i) const;
