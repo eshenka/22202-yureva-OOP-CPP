@@ -194,6 +194,7 @@ BitArray &BitArray::set() {
     for (unsigned long & i : data) {
         i = VALUE_TRUE;
     }
+    return *this;
 }
 
 BitArray &BitArray::reset(int n) {
@@ -205,6 +206,25 @@ BitArray &BitArray::reset() {
     for (unsigned long & i : data) {
         i = VALUE_FALSE;
     }
+    return *this;
+}
+
+bool BitArray::any() const {
+    for (unsigned long i : data) {
+        if (i ^ 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool BitArray::none() const {
+    for (unsigned long i : data) {
+        if (i ^ 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
 
