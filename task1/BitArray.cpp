@@ -49,8 +49,8 @@ void BitArray::resize(int num_bits, bool value) {
     }
 
     if (num_bits > length) {
-        int dataElementToChange = length / 32;
-        int indexElementToChange = length % 32;
+        int dataElementToChange = length / BITS_IN_UNSIGNED_LONG;
+        int indexElementToChange = length % BITS_IN_UNSIGNED_LONG;
 
         data[dataElementToChange] |= (element >> indexElementToChange);
         length += BITS_IN_UNSIGNED_LONG - indexElementToChange;
@@ -65,7 +65,7 @@ void BitArray::resize(int num_bits, bool value) {
         length = num_bits;
 
     } else {
-        unsigned numberOfElementsToDelete = data.size() - ((length - num_bits) / 32) - 1;
+        unsigned numberOfElementsToDelete = data.size() - ((length - num_bits) / BITS_IN_UNSIGNED_LONG) - 1;
         while (numberOfElementsToDelete) {
             data.pop_back();
             numberOfElementsToDelete--;
@@ -77,7 +77,7 @@ void BitArray::resize(int num_bits, bool value) {
 
 string BitArray::to_string() const {
     string number;
-    int validLength = length / 32;
+    int validLength = length / BITS_IN_UNSIGNED_LONG;
 
     for (int i = 0; i < validLength; i++) {
         int shift = BITS_IN_UNSIGNED_LONG - 1;
@@ -96,7 +96,7 @@ string BitArray::to_string() const {
         }
     }
 
-    int maxShift = BITS_IN_UNSIGNED_LONG - 1 - length % 32;
+    int maxShift = BITS_IN_UNSIGNED_LONG - 1 - length % BITS_IN_UNSIGNED_LONG;
 
     for (int shift = BITS_IN_UNSIGNED_LONG - 1; shift != maxShift; shift--) {
         if ((data[validLength] >> shift) & 1) {
@@ -116,7 +116,7 @@ void BitArray::clear() {
 }
 
 void BitArray::push_back(bool bit) {
-    if (length % 32) {
+    if (length % BITS_IN_UNSIGNED_LONG) {
         data[data.size() - 1] |= (bit << (BITS_IN_UNSIGNED_LONG - data.size()));
     } else {
         data.push_back(VALUE_FALSE | (bit << (BITS_IN_UNSIGNED_LONG - 1)));
@@ -164,7 +164,51 @@ BitArray &BitArray::operator^=(const BitArray &b) {
 }
 
 /*
-BitArray BitArray::operator<<(int n) const {
+BitArray &BitArray::operator<<=(int n) {
+    if (n < 0) {
+        std::cout << "invalid n value" << std::endl;
+        return *this;
+    }
+
+    if (n >= length) {
+        this->reset();
+        return *this;
+    }
+
+    int numberOfElementsToRemove = n / BITS_IN_UNSIGNED_LONG;
+    int shift = n % BITS_IN_UNSIGNED_LONG;
 
 }
 */
+
+BitArray &BitArray::set(int n, bool val) {
+    int numberOfElement = n / BITS_IN_UNSIGNED_LONG;
+    int shiftInElement = BITS_IN_UNSIGNED_LONG - n % BITS_IN_UNSIGNED_LONG;
+
+    data[numberOfElement] = data[numberOfElement] | (val << shiftInElement);
+
+    return *this;
+}
+
+BitArray &BitArray::set() {
+    for (unsigned long & i : data) {
+        i = VALUE_TRUE;
+    }
+}
+
+BitArray &BitArray::reset(int n) {
+    (*this).set(n, false);
+    return *this;
+}
+
+BitArray &BitArray::reset() {
+    for (unsigned long & i : data) {
+        i = VALUE_FALSE;
+    }
+}
+
+
+
+
+
+

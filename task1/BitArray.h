@@ -52,13 +52,14 @@ public:
     BitArray& operator^=(const BitArray& b);
 
     //Битовый сдвиг с заполнением нулями.
-    BitArray operator<<(int n) const;
-    BitArray operator>>(int n) const;
     BitArray& operator<<=(int n);
     BitArray& operator>>=(int n);
+    BitArray operator<<(int n) const;
+    BitArray operator>>(int n) const;
 
 
-    //Устанавливает бит с индексом n в значение val.
+
+    //Устанавливает бит с индексом n значение val.
     BitArray& set(int n, bool val = true);
     //Заполняет массив истиной.
     BitArray& set();
