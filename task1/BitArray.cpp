@@ -124,3 +124,54 @@ void BitArray::push_back(bool bit) {
     length++;
 }
 
+BitArray &BitArray::operator&=(const BitArray &b) {
+    if (length != b.length) {
+        std::cout << "Length are not equal" << std::endl;
+        BitArray bitArray;
+        return bitArray;
+    }
+
+    BitArray bitArray(length, 0);
+
+    for (int i = 0; i < data.size(); i++) {
+        data[i] &= b.data[i];
+        bitArray.data.push_back(data[i]);
+    }
+
+    return bitArray;
+}
+
+BitArray &BitArray::operator|=(const BitArray &b) {
+    if (length != b.length) {
+        std::cout << "Length are not equal" << std::endl;
+        BitArray bitArray;
+        return bitArray;
+    }
+
+    BitArray bitArray(length, 0);
+
+    for (int i = 0; i < data.size(); i++) {
+        data[i] |= b.data[i];
+        bitArray.data.push_back(data[i]);
+    }
+
+    return bitArray;
+}
+
+BitArray &BitArray::operator^=(const BitArray &b) {
+    if (length != b.length) {
+        std::cout << "Length are not equal" << std::endl;
+        BitArray bitArray;
+        return bitArray;
+    }
+
+    BitArray bitArray(length, 0);
+
+    for (int i = 0; i < data.size(); i++) {
+        data[i] ^= b.data[i];
+        bitArray.data.push_back(data[i]);
+    }
+
+    return bitArray;
+}
+
