@@ -163,8 +163,34 @@ BitArray &BitArray::operator^=(const BitArray &b) {
     return *this;
 }
 
-/*
 BitArray &BitArray::operator<<=(int n) {
+    if (n < 0) {
+        std::cout << "invalid n value" << std::endl;
+        return *this;
+    }
+
+    if (n >= length) {
+        (*this).reset();
+        return *this;
+    }
+
+    int elementsToRemove = n / BITS_IN_UNSIGNED_LONG;
+    int shift = n % BITS_IN_UNSIGNED_LONG;
+    int shiftReversed = BITS_IN_UNSIGNED_LONG - shift;
+
+    for (int i = 0; i < data.size() - elementsToRemove - 1; i++) {
+        data[i] = (data[elementsToRemove + i] << shift) | (data[elementsToRemove + i + 1] >> shiftReversed);
+    }
+    data[data.size() - elementsToRemove] << shiftReversed;
+
+    for (unsigned long i = data.size() - elementsToRemove; i < data.size(); i++) {
+        data[i] &= VALUE_FALSE;
+    }
+
+    return *this;
+}
+
+BitArray &BitArray::operator>>=(int n) {
     if (n < 0) {
         std::cout << "invalid n value" << std::endl;
         return *this;
@@ -175,11 +201,20 @@ BitArray &BitArray::operator<<=(int n) {
         return *this;
     }
 
-    int numberOfElementsToRemove = n / BITS_IN_UNSIGNED_LONG;
+    int elementsToRemove = n / BITS_IN_UNSIGNED_LONG;
     int shift = n % BITS_IN_UNSIGNED_LONG;
+    int shiftReversed = BITS_IN_UNSIGNED_LONG - shift;
 
+    for (unsigned long i = data.size() - 1; i > elementsToRemove; i--) {
+        data[i] = ((data[i - elementsToRemove] >> shift) << shift) | ((data[i - 1 - elementsToRemove] << shiftReversed) >> shiftReversed);
+    }
+
+    for (unsigned long i = 0; i < elementsToRemove; i++) {
+        data[i] &= VALUE_FALSE;
+    }
+
+    return *this;
 }
-*/
 
 BitArray &BitArray::set(int n, bool val) {
     int numberOfElement = n / BITS_IN_UNSIGNED_LONG;
