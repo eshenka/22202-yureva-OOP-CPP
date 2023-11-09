@@ -109,3 +109,18 @@ string BitArray::to_string() const {
     return number;
 }
 
+void BitArray::clear() {
+    for (unsigned long & i : data) {
+        i &= 0;
+    }
+}
+
+void BitArray::push_back(bool bit) {
+    if (length % 32) {
+        data[data.size() - 1] |= (bit << (BITS_IN_UNSIGNED_LONG - data.size()));
+    } else {
+        data.push_back(VALUE_FALSE | (bit << (BITS_IN_UNSIGNED_LONG - 1)));
+    }
+    length++;
+}
+
