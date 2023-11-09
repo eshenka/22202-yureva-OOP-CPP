@@ -13,6 +13,4 @@ add_executable(task0 main.cpp
         Parser.cpp
         Parser.h
         DataStorage.cpp
-        DataStorage.h
-        ../task1/BitArray.cpp
-        ../task1/BitArray.h)
+        DataStorage.h)
