@@ -329,3 +329,55 @@ BitArray::BitPointer::operator bool() {
 
     return ((bitArray.data[element] >> shift) & 1);
 }
+
+bool operator==(const BitArray & a, const BitArray & b) {
+    if (a.size() != b.size()) {
+        return false;
+    }
+
+    for (int i = 0; i < a.size(); i++) {
+        if (a[i] != b[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool operator!=(const BitArray & a, const BitArray & b) {
+    if (a.size() != b.size()) {
+        return true;
+    }
+
+    for (int i = 0; i < a.size(); i++) {
+        if (a[i] != b[i]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+BitArray operator&(const BitArray& b1, const BitArray& b2) {
+    BitArray ANDResult(b1);
+
+    ANDResult &= b2;
+
+    return ANDResult;
+}
+
+BitArray operator|(const BitArray& b1, const BitArray& b2) {
+    BitArray ORResult(b1);
+
+    ORResult |= b2;
+
+    return ORResult;
+}
+
+BitArray operator^(const BitArray& b1, const BitArray& b2) {
+    BitArray XORResult(b1);
+
+    XORResult ^= b2;
+
+    return XORResult;
+}
