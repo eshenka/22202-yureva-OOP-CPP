@@ -190,6 +190,14 @@ BitArray &BitArray::operator<<=(int n) {
     return *this;
 }
 
+BitArray BitArray::operator<<(int n) const {
+    BitArray shifted(*this);
+
+    shifted <<= n;
+
+    return shifted;
+}
+
 BitArray &BitArray::operator>>=(int n) {
     if (n < 0) {
         std::cout << "invalid n value" << std::endl;
@@ -215,6 +223,14 @@ BitArray &BitArray::operator>>=(int n) {
     }
 
     return *this;
+}
+
+BitArray BitArray::operator>>(int n) const {
+    BitArray shifted(*this);
+
+    shifted >>= n;
+
+    return shifted;
 }
 
 BitArray &BitArray::set(int n, bool val) {
@@ -293,6 +309,7 @@ int BitArray::size() const {
 bool BitArray::empty() const {
     return length == 0;
 }
+
 
 
 
