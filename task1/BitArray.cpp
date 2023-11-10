@@ -205,11 +205,14 @@ BitArray &BitArray::operator>>=(int n) {
     int shift = n % BITS_IN_UNSIGNED_LONG;
     int shiftReversed = BITS_IN_UNSIGNED_LONG - shift;
 
-    for (unsigned long i = data.size() - 1; i > elementsToRemove; i--) {
-        data[i] = ((data[i - elementsToRemove] >> shift) << shift) | ((data[i - 1 - elementsToRemove] << shiftReversed) >> shiftReversed);
+    std::cout << data.size() << std::endl;
+    std::cout << elementsToRemove + 1 << std::endl;
+    for (unsigned i = data.size() - 1; i >= elementsToRemove + 1; i--) {
+        data[i] = (data[i - elementsToRemove] << shift) | (data[i - 1 - elementsToRemove] >> shiftReversed);
     }
+    data[elementsToRemove] = (data[elementsToRemove] >> shift) | 0;
 
-    for (unsigned long i = 0; i < elementsToRemove; i++) {
+    for (int i = 0; i < elementsToRemove; i++) {
         data[i] &= VALUE_FALSE;
     }
 
