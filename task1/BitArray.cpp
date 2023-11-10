@@ -36,8 +36,7 @@ void BitArray::swap(BitArray &b) {
     b.data = data;
     b.length = length;
 
-    data = tmp.data;
-    length = tmp.length;
+    *this = tmp;
 }
 
 void BitArray::resize(int num_bits, bool value) {
@@ -110,9 +109,8 @@ string BitArray::to_string() const {
 }
 
 void BitArray::clear() {
-    for (unsigned long & i : data) {
-        i &= 0;
-    }
+    data.clear();
+    length = 0;
 }
 
 void BitArray::push_back(bool bit) {
@@ -235,7 +233,7 @@ BitArray BitArray::operator>>(int n) const {
 
 BitArray &BitArray::set(int n, bool val) {
     int numberOfElement = n / BITS_IN_UNSIGNED_LONG;
-    int shiftInElement = BITS_IN_UNSIGNED_LONG - n % BITS_IN_UNSIGNED_LONG;
+    int shiftInElement = BITS_IN_UNSIGNED_LONG - n % BITS_IN_UNSIGNED_LONG - 1;
 
     data[numberOfElement] = data[numberOfElement] | (val << shiftInElement);
 
@@ -310,9 +308,24 @@ bool BitArray::empty() const {
     return length == 0;
 }
 
+BitArray::BitPointer BitArray::operator[](int i) const {
+    BitArray::BitPointer bitPtr(*this, i);
+    return bitPtr;
+}
 
+BitArray::BitPointer &BitArray::BitPointer::operator=(bool e) {
+    (bitArray).set(index, e);
+    return *this;
+}
 
+BitArray::BitPointer::BitPointer(const BitArray &bitArray, int index) : bitArray(const_cast<BitArray &>(bitArray)) {
+    this->bitArray = bitArray;
+    this->index = index;
+}
 
+BitArray::BitPointer::operator bool() {
+    int element = index / BITS_IN_UNSIGNED_LONG;
+    int shift = BITS_IN_UNSIGNED_LONG - index % BITS_IN_UNSIGNED_LONG - 1;
 
-
-
+    return ((bitArray.data[element] >> shift) & 1);
+}

@@ -2,7 +2,7 @@
 #define TASK1_BITARRAY_H
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include <string>
 #include <vector>
 
@@ -18,6 +18,16 @@ private:
     vector<unsigned long> data;
     int length;
 public:
+
+    class BitPointer {
+    private:
+        BitArray& bitArray;
+        int index;
+    public:
+        BitPointer(const BitArray &bitArray, int index);
+        BitPointer& operator=(bool e);
+        operator bool();
+    };
 
     BitArray() = default;
     ~BitArray() = default;
@@ -57,8 +67,6 @@ public:
     BitArray operator<<(int n) const;
     BitArray operator>>(int n) const;
 
-
-
     //Устанавливает бит с индексом n значение val.
     BitArray& set(int n, bool val = true);
     //Заполняет массив истиной.
@@ -79,7 +87,7 @@ public:
     int count() const;
 
     //Возвращает значение бита по индексу i.
-    bool operator[](int i) const;
+    BitArray::BitPointer operator[](int i) const;
 
     int size() const;
     bool empty() const;
