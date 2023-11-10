@@ -286,6 +286,14 @@ int BitArray::count() const {
     return count;
 }
 
+int BitArray::size() const {
+    return length;
+}
+
+bool BitArray::empty() const {
+    return length == 0;
+}
+
 
 
 
