@@ -263,6 +263,29 @@ bool BitArray::none() const {
     return true;
 }
 
+BitArray BitArray::operator~() const {
+    BitArray inversion(*this);
+
+    for (int i = 0; i < data.size(); i++) {
+        inversion.data[i] = data[i] ^ (unsigned long)VALUE_TRUE;
+    }
+
+    return inversion;
+}
+
+int BitArray::count() const {
+    int count = 0;
+
+    for (unsigned long i : data) {
+        for (int shift = 0; shift < BITS_IN_UNSIGNED_LONG; shift++) {
+            if ((i >> shift) & 1) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
 
 
 
