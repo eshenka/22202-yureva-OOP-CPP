@@ -12,7 +12,12 @@ int shiftBinarySize (unsigned long value) {
 
 BitArray::BitArray(int num_bits, unsigned long value) {
     data.push_back(value << shiftBinarySize(value));
-    length = num_bits;
+
+    int dataSize = ceil(num_bits / BITS_IN_UNSIGNED_LONG);
+    while(data.size() != dataSize) {
+        data.push_back(VALUE_FALSE);
+    }
+    length = num_bits + 1;
 }
 
 BitArray::BitArray(const BitArray &b) {
@@ -76,7 +81,7 @@ void BitArray::resize(int num_bits, bool value) {
 
 string BitArray::to_string() const {
     string number;
-    int validLength = length / BITS_IN_UNSIGNED_LONG;
+    int validLength = (length - 1) / BITS_IN_UNSIGNED_LONG;
 
     for (int i = 0; i < validLength; i++) {
         int shift = BITS_IN_UNSIGNED_LONG - 1;
@@ -95,7 +100,7 @@ string BitArray::to_string() const {
         }
     }
 
-    int maxShift = BITS_IN_UNSIGNED_LONG - 1 - length % BITS_IN_UNSIGNED_LONG;
+    int maxShift = BITS_IN_UNSIGNED_LONG - 1 - (length - 1) % BITS_IN_UNSIGNED_LONG;
 
     for (int shift = BITS_IN_UNSIGNED_LONG - 1; shift != maxShift; shift--) {
         if ((data[validLength] >> shift) & 1) {
