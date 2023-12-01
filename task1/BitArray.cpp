@@ -314,7 +314,27 @@ int BitArray::count() const {
 }
 
 int BitArray::size() const {
-    return length;
+    int lastElement = length / BITS_IN_UNSIGNED_LONG;
+
+    if (data[lastElement] != VALUE_FALSE) {
+        int shiftMax = BITS_IN_UNSIGNED_LONG - (length % BITS_IN_UNSIGNED_LONG);
+
+        for (; shiftMax < BITS_IN_UNSIGNED_LONG; shiftMax++) {
+            if((data[lastElement] >> shiftMax) & 1) {
+                return lastElement * BITS_IN_UNSIGNED_LONG + (BITS_IN_UNSIGNED_LONG-shiftMax);
+            }
+        }
+    }
+
+    while (true) {
+        if (data[lastElement] != VALUE_FALSE) {
+            for (int shift = 0; shift < BITS_IN_UNSIGNED_LONG; shift++) {
+                if ((data[lastElement] >> shift) & 1) {
+                    return lastElement * BITS_IN_UNSIGNED_LONG - shift;
+                }
+            }
+        }
+    }
 }
 
 bool BitArray::empty() const {
