@@ -240,7 +240,11 @@ BitArray &BitArray::set(int n, bool val) {
     int numberOfElement = n / BITS_IN_UNSIGNED_LONG;
     int shiftInElement = BITS_IN_UNSIGNED_LONG - n % BITS_IN_UNSIGNED_LONG - 1;
 
-    data[numberOfElement] = data[numberOfElement] | (val << shiftInElement);
+    if (val) {
+        data[numberOfElement] = data[numberOfElement] | (val << shiftInElement);
+    } else {
+        data[numberOfElement] = data[numberOfElement] & ~(true << shiftInElement);
+    }
 
     return *this;
 }
