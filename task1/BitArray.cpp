@@ -52,7 +52,7 @@ void BitArray::resize(int num_bits, bool value) {
         element = VALUE_FALSE;
     }
 
-    if (num_bits > length) {
+    if (num_bits >= length) {
         int dataElementToChange = length / BITS_IN_UNSIGNED_LONG;
         int indexElementToChange = length % BITS_IN_UNSIGNED_LONG;
 
@@ -66,7 +66,7 @@ void BitArray::resize(int num_bits, bool value) {
             numberOfElementsToAdd--;
         }
 
-        length = num_bits;
+        length = num_bits + 1;
 
     } else {
         unsigned numberOfElementsToDelete = data.size() - ((length - num_bits) / BITS_IN_UNSIGNED_LONG) - 1;
@@ -75,7 +75,7 @@ void BitArray::resize(int num_bits, bool value) {
             numberOfElementsToDelete--;
         }
 
-        length = num_bits;
+        length = num_bits + 1;
     }
 }
 
