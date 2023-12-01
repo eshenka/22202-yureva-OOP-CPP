@@ -17,7 +17,7 @@ BitArray::BitArray(int num_bits, unsigned long value) {
     while(data.size() != dataSize) {
         data.push_back(VALUE_FALSE);
     }
-    length = num_bits + 1;
+    length = num_bits;
 }
 
 BitArray::BitArray(const BitArray &b) {
@@ -66,7 +66,7 @@ void BitArray::resize(int num_bits, bool value) {
             numberOfElementsToAdd--;
         }
 
-        length = num_bits + 1;
+        length = num_bits;
 
     } else {
         unsigned numberOfElementsToDelete = data.size() - ((length - num_bits) / BITS_IN_UNSIGNED_LONG) - 1;
@@ -75,13 +75,13 @@ void BitArray::resize(int num_bits, bool value) {
             numberOfElementsToDelete--;
         }
 
-        length = num_bits + 1;
+        length = num_bits;
     }
 }
 
 string BitArray::to_string() const {
     string number;
-    int validLength = (length - 1) / BITS_IN_UNSIGNED_LONG;
+    int validLength = (length) / BITS_IN_UNSIGNED_LONG;
 
     for (int i = 0; i < validLength; i++) {
         int shift = BITS_IN_UNSIGNED_LONG - 1;
@@ -100,7 +100,7 @@ string BitArray::to_string() const {
         }
     }
 
-    int maxShift = BITS_IN_UNSIGNED_LONG - 1 - (length - 1) % BITS_IN_UNSIGNED_LONG;
+    int maxShift = BITS_IN_UNSIGNED_LONG - 1 - (length) % BITS_IN_UNSIGNED_LONG;
 
     for (int shift = BITS_IN_UNSIGNED_LONG - 1; shift != maxShift; shift--) {
         if ((data[validLength] >> shift) & 1) {
@@ -337,6 +337,10 @@ BitArray::BitPointer::BitPointer(const BitArray &bitArray, int index) : bitArray
 }
 
 BitArray::BitPointer::operator bool() {
+    if (index >= bitArray.length) {
+        return false;
+    }
+
     int element = index / BITS_IN_UNSIGNED_LONG;
     int shift = BITS_IN_UNSIGNED_LONG - index % BITS_IN_UNSIGNED_LONG - 1;
 
