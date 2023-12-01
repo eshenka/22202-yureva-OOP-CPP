@@ -1,6 +1,7 @@
 #ifndef TASK1_BITARRAY_H
 #define TASK1_BITARRAY_H
 
+#include <stdexcept>
 #include <iostream>
 #include <cmath>
 #include <string>
