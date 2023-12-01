@@ -237,6 +237,10 @@ BitArray BitArray::operator>>(int n) const {
 }
 
 BitArray &BitArray::set(int n, bool val) {
+    if (n >= length - 1) {
+        this->resize(n + 1, false);
+    }
+
     int numberOfElement = n / BITS_IN_UNSIGNED_LONG;
     int shiftInElement = BITS_IN_UNSIGNED_LONG - n % BITS_IN_UNSIGNED_LONG - 1;
 
@@ -250,8 +254,8 @@ BitArray &BitArray::set(int n, bool val) {
 }
 
 BitArray &BitArray::set() {
-    for (unsigned long & i : data) {
-        i = VALUE_TRUE;
+    for (int i = 0; i <= data.size(); i++) {
+        data[i] = VALUE_TRUE;
     }
     return *this;
 }
