@@ -8,4 +8,4 @@ add_executable(task1
         main.cpp
         BitArray.h
         BitArray.cpp
-        BitArrayExeption.h)
+        BitArrayException.h)

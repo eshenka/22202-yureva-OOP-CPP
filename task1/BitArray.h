@@ -6,6 +6,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include "BitArrayException.h"
 
 #define BITS_IN_UNSIGNED_LONG 32
 #define VALUE_TRUE pow(2, 32) - 1

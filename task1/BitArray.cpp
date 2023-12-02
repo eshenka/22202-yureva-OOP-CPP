@@ -45,6 +45,10 @@ void BitArray::swap(BitArray &b) {
 }
 
 void BitArray::resize(int num_bits, bool value) {
+    if (num_bits < 0) {
+        throw BitArrayException("Unable to resize by negative value");
+    }
+
     unsigned long element;
     if (value) {
         element = VALUE_TRUE;
@@ -85,11 +89,7 @@ string BitArray::to_string() const {
 
     for (int i = 0; i < validLength; i++) {
         int shift = BITS_IN_UNSIGNED_LONG - 1;
-        while (true) {
-            if (shift == -1) {
-                break;
-            }
-
+        while (shift >= 0) {
             if ((data[i] >> shift) & 1) {
                 number += "1";
             } else {
@@ -129,8 +129,7 @@ void BitArray::push_back(bool bit) {
 
 BitArray &BitArray::operator&=(const BitArray &b) {
     if (length != b.length) {
-        std::cout << "Lengths are not equal" << std::endl;
-        return *this;
+        throw BitArrayException("Lengths are not equal");
     }
 
     for (int i = 0; i < data.size(); i++) {
@@ -142,8 +141,7 @@ BitArray &BitArray::operator&=(const BitArray &b) {
 
 BitArray &BitArray::operator|=(const BitArray &b) {
     if (length != b.length) {
-        std::cout << "Lengths are not equal" << std::endl;
-        return *this;
+        throw BitArrayException("Lengths are not equal");
     }
 
     for (int i = 0; i < data.size(); i++) {
@@ -155,8 +153,7 @@ BitArray &BitArray::operator|=(const BitArray &b) {
 
 BitArray &BitArray::operator^=(const BitArray &b) {
     if (length != b.length) {
-        std::cout << "Lengths are not equal" << std::endl;
-        return *this;
+        throw BitArrayException("Lengths are not equal");
     }
 
     for (int i = 0; i < data.size(); i++) {
@@ -168,8 +165,7 @@ BitArray &BitArray::operator^=(const BitArray &b) {
 
 BitArray &BitArray::operator<<=(int n) {
     if (n < 0) {
-        std::cout << "invalid n value" << std::endl;
-        return *this;
+        throw BitArrayException("invalid n value");
     }
 
     if (n >= length) {
@@ -203,8 +199,7 @@ BitArray BitArray::operator<<(int n) const {
 
 BitArray &BitArray::operator>>=(int n) {
     if (n < 0) {
-        std::cout << "invalid n value" << std::endl;
-        return *this;
+        throw BitArrayException("invalid n value");
     }
 
     if (n >= length) {
@@ -314,27 +309,31 @@ int BitArray::count() const {
 }
 
 int BitArray::size() const {
-    int lastElement = length / BITS_IN_UNSIGNED_LONG;
+    int lastElement = (int)data.size() - 1;
 
     if (data[lastElement] != VALUE_FALSE) {
-        int shiftMax = BITS_IN_UNSIGNED_LONG - (length % BITS_IN_UNSIGNED_LONG);
+        int shift = BITS_IN_UNSIGNED_LONG - (length % BITS_IN_UNSIGNED_LONG) - 1;
 
-        for (; shiftMax < BITS_IN_UNSIGNED_LONG; shiftMax++) {
-            if((data[lastElement] >> shiftMax) & 1) {
-                return lastElement * BITS_IN_UNSIGNED_LONG + (BITS_IN_UNSIGNED_LONG-shiftMax);
+        for (; shift < BITS_IN_UNSIGNED_LONG; shift++) {
+            if ((data[lastElement] >> shift) & 1) {
+                return BITS_IN_UNSIGNED_LONG * lastElement + (BITS_IN_UNSIGNED_LONG - shift);
             }
         }
     }
 
-    while (true) {
+    lastElement--;
+
+    while (lastElement >= 0) {
         if (data[lastElement] != VALUE_FALSE) {
             for (int shift = 0; shift < BITS_IN_UNSIGNED_LONG; shift++) {
                 if ((data[lastElement] >> shift) & 1) {
                     return lastElement * BITS_IN_UNSIGNED_LONG - shift;
                 }
             }
+            lastElement--;
         }
     }
+    return 0;
 }
 
 bool BitArray::empty() const {
