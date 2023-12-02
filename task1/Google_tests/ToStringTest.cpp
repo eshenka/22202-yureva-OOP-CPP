@@ -7,7 +7,7 @@
 #include "gtest/gtest.h"
 
 TEST(ToStringTest, allZeros) {
-    BitArray array(33, 0);
+    BitArray array3(33, 0);
 
     string str;
     int cnt = 0;
@@ -16,5 +16,5 @@ TEST(ToStringTest, allZeros) {
         cnt++;
     }
 
-    ASSERT_EQ(str, array.to_string());
+    ASSERT_EQ(str, array3.to_string());
 }
