@@ -11,12 +11,17 @@ int shiftBinarySize (unsigned long value) {
 }
 
 BitArray::BitArray(int num_bits, unsigned long value) {
-    data.push_back(value << shiftBinarySize(value));
+//    data.push_back(value << shiftBinarySize(value));
+//
+//    int dataSize = (num_bits / BITS_IN_UNSIGNED_LONG);
+//    while(data.size() != dataSize) {
+//        data.push_back(VALUE_FALSE);
+//    }
+//    length = num_bits ;
 
-    int dataSize = ceil(num_bits / BITS_IN_UNSIGNED_LONG);
-    while(data.size() != dataSize) {
-        data.push_back(VALUE_FALSE);
-    }
+    int dataSize = (num_bits - 1) / BITS_IN_UNSIGNED_LONG + 1;
+    data.resize(dataSize);
+    data[0] = value << shiftBinarySize(value);
     length = num_bits;
 }
 
@@ -211,12 +216,13 @@ BitArray &BitArray::operator>>=(int n) {
     int shift = n % BITS_IN_UNSIGNED_LONG;
     int shiftReversed = BITS_IN_UNSIGNED_LONG - shift;
 
-    for (unsigned i = data.size() - 1; i >= elementsToRemove + 1; i--) {
+    for (int i = data.size() - 1; i >= elementsToRemove + 1; i--) {
         data[i] = (data[i - elementsToRemove] << shift) | (data[i - 1 - elementsToRemove] >> shiftReversed);
     }
     data[elementsToRemove] = (data[elementsToRemove] >> shift) | 0;
 
     for (int i = 0; i < elementsToRemove; i++) {
+        std::cout << "b" << std::endl;
         data[i] &= VALUE_FALSE;
     }
 

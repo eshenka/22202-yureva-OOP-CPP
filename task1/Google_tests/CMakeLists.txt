@@ -7,6 +7,8 @@ add_executable(Google_tests_run
         ../BitArray.h
         ../BitArray.cpp
         ToStringTest.cpp
-        SetTests.cpp)
+        SetTests.cpp
+        ResizeTest.cpp
+        ShiftTests.cpp)
 
 target_link_libraries(Google_tests_run gtest gtest_main)
