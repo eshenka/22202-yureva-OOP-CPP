@@ -9,6 +9,10 @@ add_executable(Google_tests_run
         ToStringTest.cpp
         SetTests.cpp
         ResizeTest.cpp
-        ShiftTests.cpp)
+        ShiftTests.cpp
+        SwapTest.cpp
+        PushBackTest.cpp
+        BitOperationsTest.cpp
+        BitPtrTests.cpp)
 
 target_link_libraries(Google_tests_run gtest gtest_main)

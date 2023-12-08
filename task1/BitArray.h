@@ -8,9 +8,10 @@
 #include <vector>
 #include "BitArrayException.h"
 
-#define BITS_IN_UNSIGNED_LONG sizeof(unsigned long)
 #define VALUE_TRUE pow(2, 32) - 1
 #define VALUE_FALSE 0
+
+const int BITS_IN_UNSIGNED_LONG = sizeof(unsigned long) * 8;
 
 using std::string;
 using std::vector;
@@ -93,11 +94,12 @@ public:
 
     int size() const;
     bool empty() const;
+    int bytes() const;
 
     //Возвращает строковое представление массива.
     string to_string() const;
 
-    int vector_size();
+    int bytes();
 };
 
 bool operator==(const BitArray & a, const BitArray & b);

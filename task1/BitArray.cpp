@@ -117,7 +117,7 @@ void BitArray::clear() {
 
 void BitArray::push_back(bool bit) {
     if (length % BITS_IN_UNSIGNED_LONG) {
-        data[data.size() - 1] |= (bit << (BITS_IN_UNSIGNED_LONG - data.size()));
+        data[data.size() - 1] |= (bit << (BITS_IN_UNSIGNED_LONG - data.size() - 1));
     } else {
         data.push_back(VALUE_FALSE | (bit << (BITS_IN_UNSIGNED_LONG - 1)));
     }
@@ -343,7 +343,7 @@ BitArray::BitPointer BitArray::operator[](int i) const {
     return bitPtr;
 }
 
-int BitArray::vector_size() {
+int BitArray::bytes() {
     return data.size();
 }
 
