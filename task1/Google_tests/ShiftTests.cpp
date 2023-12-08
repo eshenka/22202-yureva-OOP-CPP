@@ -21,3 +21,15 @@ TEST (ShiftTests, LeftShiftTest) {
     ASSERT_EQ(str, array.to_string());
     ~array;
 }
+
+TEST (ShiftTests, RightShiftTestWithoutChanging) {
+    BitArray array(4, 1);
+    ASSERT_EQ("0100", (array>>1).to_string());
+    ~array;
+}
+
+TEST (ShiftTests, LeftShiftTestWithoutChanging) {
+    BitArray array(4, 1);
+    ASSERT_EQ("0000", (array<<1).to_string());
+    ~array;
+}
