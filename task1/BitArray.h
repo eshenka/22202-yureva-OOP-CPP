@@ -8,7 +8,7 @@
 #include <vector>
 #include "BitArrayException.h"
 
-#define BITS_IN_UNSIGNED_LONG 32
+#define BITS_IN_UNSIGNED_LONG sizeof(unsigned long)
 #define VALUE_TRUE pow(2, 32) - 1
 #define VALUE_FALSE 0
 
@@ -97,6 +97,7 @@ public:
     //Возвращает строковое представление массива.
     string to_string() const;
 
+    int vector_size();
 };
 
 bool operator==(const BitArray & a, const BitArray & b);

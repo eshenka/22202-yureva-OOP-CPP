@@ -1,10 +1,7 @@
-//
-// Created by Yulia on 01.12.2023.
-//
 #include "../BitArray.h"
 #include "gtest/gtest.h"
 
-TEST(ToStringTests, SetNoOperands) {
+TEST(SetTests, SetNoOperands) {
     BitArray array(33, 0);
 
     string allTrue;
@@ -16,9 +13,10 @@ TEST(ToStringTests, SetNoOperands) {
 
     array.set();
     ASSERT_EQ(allTrue, array.to_string());
+    ~array;
 }
 
-TEST(ToStringTests, SetWithOperands) {
+TEST(SetTests, SetWithOperands) {
     BitArray array(33, 0);
 
     string str;
@@ -43,5 +41,5 @@ TEST(ToStringTests, SetWithOperands) {
 
     array.set(32, false);
     ASSERT_EQ(str2, array.to_string());
+    ~array;
 }
-

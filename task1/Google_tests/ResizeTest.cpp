@@ -13,6 +13,7 @@ TEST (ResizeTest, ExpandTest) {
     }
 
     ASSERT_EQ(str, array.to_string());
+    ~array;
 }
 
 TEST (ResizeTest, NarrowTest) {
@@ -27,10 +28,12 @@ TEST (ResizeTest, NarrowTest) {
     }
 
     ASSERT_EQ(str, array.to_string());
+    ~array;
 }
 
 TEST(ResizeTest, ExceptionTest) {
-    BitArray array1(33, 0);
+    BitArray array(33, 0);
 
-    ASSERT_THROW(array1.resize(-5), BitArrayException);
+    ASSERT_THROW(array.resize(-5), BitArrayException);
+    ~array;
 }

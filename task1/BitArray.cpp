@@ -343,6 +343,10 @@ BitArray::BitPointer BitArray::operator[](int i) const {
     return bitPtr;
 }
 
+int BitArray::vector_size() {
+    return data.size();
+}
+
 BitArray::BitPointer &BitArray::BitPointer::operator=(bool e) {
     (bitArray).set(index, e);
     return *this;

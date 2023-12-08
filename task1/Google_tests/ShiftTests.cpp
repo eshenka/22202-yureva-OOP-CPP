@@ -2,20 +2,22 @@
 #include "gtest/gtest.h"
 
 TEST (ShiftTests, RightShiftTest) {
-    BitArray array2(4, 1);
-    array2 >>= 1;
+    BitArray array(4, 1);
+    array >>= 1;
 
     string str = "0100";
 
-    ASSERT_EQ(str, array2.to_string());
+    ASSERT_EQ(str, array.to_string());
+    ~array;
 }
 
 TEST (ShiftTests, LeftShiftTest) {
-    BitArray array6(4, 0);
-    array6[1] = true;
-    array6 <<= 1;
+    BitArray array(4, 0);
+    array[1] = true;
+    array <<= 1;
 
     string str = "1000";
 
-    ASSERT_EQ(str, array6.to_string());
+    ASSERT_EQ(str, array.to_string());
+    ~array;
 }
