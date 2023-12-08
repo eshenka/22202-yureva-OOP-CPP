@@ -10,7 +10,7 @@ add_executable(Google_tests_run
         SetTests.cpp
         ResizeTest.cpp
         ShiftTests.cpp
-        SwapTest.cpp
+        SwapTests.cpp
         PushBackTest.cpp
         BitOperationsTest.cpp
         BitPtrTests.cpp)
